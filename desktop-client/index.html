@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Klinik Luntang Lantung - Dasbor Dokter (Role C)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8fafc;
+            /* ... kode lainnya ... */
+        }
+        .header {
+            background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { margin: 0; font-size: 24px; }
+        .btn-refresh {
+            background: white; color: #0f766e; border: none;
+            padding: 10px 20px; border-radius: 8px; font-weight: bold;
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-refresh:hover { background: #f1f5f9; transform: scale(1.05); }
+        .queue-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;
+        }
+        .queue-card {
+            background: white; padding: 20px; border-radius: 12px;
+            border-left: 5px solid #0d9488;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .queue-card h2 { margin: 0 0 10px 0; color: #0f766e; }
+        .queue-card p { margin: 5px 0; color: #475569; }
+    </style>
+</head>
+<body>
+ 
+    <div class="header">
+        <div>
+            <h1>👨‍⚕️ Dasbor Desktop Dokter</h1>
+            <p style="margin: 5px 0 0 0; opacity: 0.9;">Klinik Luntang Lantung - Role C</p>
+        </div>
+        <button class="btn-refresh" onclick="loadAntrean()">🔄 Segarkan Data</button>
+    </div>
+ 
+    <h3 style="color: #475569; margin-bottom: 20px;">Daftar Antrean Pasien Terkini:</h3>
+    <div class="queue-grid" id="queueContainer">
+        <!-- Data antrean akan disuntikkan ke sini oleh JavaScript -->
+        <p>Memuat data dari server...</p>
+    </div>
+ 
+    <script>
+        async function loadAntrean() {
+            const container = document.getElementById('queueContainer');
+            try {
+                // Mengambil data dari SATU SUMBER API Node.js yang sama
+                const response = await fetch('http://localhost:3000/api/jadwal');
+                const json = await response.json();
+                
+                if (json.data && json.data.length > 0) {
+                    container.innerHTML = ''; // Kosongkan container
+                    json.data.forEach(jadwal => {
+                        container.innerHTML += `
+                            <div class="queue-card">
+                                <h2>Antrean #${jadwal.id}</h2>
+                                <p><strong>Pasien:</strong> ${jadwal.namaPasien}</p>
+                                <p><strong>Dokter:</strong> ${jadwal.namaDokter}</p>
+                                <p><strong>Tanggal:</strong> ${jadwal.tanggal}</p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    container.innerHTML = '<p>Belum ada jadwal antrean.</p>';
+                }
+            } catch (error) {
+                container.innerHTML = `<p style="color: red;">Gagal terhubung ke API Server. Pastikan Node.js menyala.</p>`;
+            }
+        }
+ 
+        // Jalankan fungsi saat aplikasi desktop pertama kali dibuka
+        loadAntrean();
+    </script>
+</body>
+</html>

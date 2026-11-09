@@ -1,0 +1,229 @@
+/* Import Font Premium dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* { 
+  box-sizing: border-box; 
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; 
+}
+
+body { 
+  margin: 0; 
+  /* Memberikan gambar latar belakang rumah sakit/klinik berkualitas tinggi */
+  background-image: linear-gradient(rgba(15, 118, 110, 0.85), rgba(13, 148, 136, 0.85)), 
+                    url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1920&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #1e293b; 
+  min-height: 100vh;
+}
+
+.app-container { 
+  padding-bottom: 60px; 
+}
+
+/* NAVBAR DENGAN EFEK KACA (GLASSMORPHISM) */
+.navbar { 
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #0f766e; 
+  padding: 22px; 
+  text-align: center; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+  margin-bottom: 40px; 
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.navbar h1 { 
+  margin: 0; 
+  font-size: 26px; 
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #0d9488 0%, #0369a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.content-wrapper { 
+  max-width: 1100px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: grid; 
+  gap: 35px; 
+  grid-template-columns: 1fr; 
+}
+
+/* KARTU DENGAN EFEK KACA SEMI-TRANSPARAN YANG ELEGAN */
+.card { 
+  background: rgba(255, 255, 255, 0.95); 
+  backdrop-filter: blur(10px);
+  border-radius: 20px; 
+  padding: 30px; 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); 
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* Animasi masuk */
+  animation: scaleUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 1);
+}
+
+@keyframes scaleUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.grid-2 > .card:nth-child(1) { animation-delay: 0.1s; }
+.grid-2 > .card:nth-child(2) { animation-delay: 0.2s; }
+
+.card-header { 
+  font-size: 19px; 
+  color: #0f766e; 
+  margin-bottom: 25px; 
+  padding-bottom: 12px; 
+  font-weight: 700; 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  border-bottom: 2px dashed #ccfbf1;
+}
+
+/* FORM INPUT INTERAKTIF */
+.form-group { margin-bottom: 20px; }
+.form-group label { 
+  display: block; 
+  margin-bottom: 8px; 
+  font-size: 14px; 
+  font-weight: 600; 
+  color: #334155; 
+}
+
+.form-control { 
+  width: 100%; 
+  padding: 14px 18px; 
+  border: 2px solid #e2e8f0; 
+  border-radius: 12px; 
+  font-size: 15px; 
+  transition: all 0.3s ease; 
+  background-color: #f8fafc;
+}
+
+.form-control:focus { 
+  outline: none; 
+  border-color: #0d9488; 
+  background-color: white;
+  box-shadow: 0 0 0 5px rgba(13, 148, 136, 0.15); 
+  transform: translateY(-2px);
+}
+
+/* TOMBOL UTAMA */
+.btn { 
+  padding: 14px 24px; 
+  border: none; 
+  border-radius: 12px; 
+  font-size: 15px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.btn:active { transform: scale(0.95); }
+
+.btn-primary { 
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); 
+  color: white; 
+  width: 100%; 
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.3);
+}
+
+.btn-primary:hover { 
+  background: linear-gradient(135deg, #2dd4bf 0%, #0f766e 100%); 
+  box-shadow: 0 8px 25px rgba(13, 148, 136, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-danger { 
+  background-color: #fee2e2; 
+  color: #ef4444; 
+  padding: 8px 16px; 
+  font-size: 13px; 
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover { 
+  background-color: #ef4444; 
+  color: white;
+  transform: scale(1.05);
+}
+
+/* TABEL BERSIH */
+.table-responsive { 
+  overflow-x: auto; 
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+th, td { 
+  padding: 16px 18px; 
+  text-align: left; 
+  border-bottom: 1px solid #f1f5f9; 
+}
+
+th { 
+  background-color: #f8fafc; 
+  font-weight: 700; 
+  color: #475569; 
+  font-size: 13px; 
+  text-transform: uppercase;
+}
+
+td { 
+  font-size: 14px; 
+  color: #334155; 
+}
+
+tr:hover td { 
+  background-color: #f0fdfa; 
+  color: #0f766e;
+}
+
+.empty-state { 
+  text-align: center; 
+  padding: 45px 20px; 
+  color: #94a3b8; 
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* RESPONSIF LAYAR */
+@media (min-width: 768px) {
+  .grid-2 { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 35px; 
+  }
+}
